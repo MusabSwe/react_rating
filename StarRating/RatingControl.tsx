@@ -66,34 +66,33 @@ const RatingControl = (props: IRatingControlProps): JSX.Element => {
     }, [props.rating])
 
     // Event Handllers
-    // const onChangeEvent = (ev: any, newString?: any): void => {
-    //     // console.log("Selceted star: ", newString);
-    // };
+    let tempVal: any = undefined;
+    const onChangeEvent = (ev: any, newString?: any): void => {
+        // console.log("Selceted star: ", newString);
+        tempVal = newString;
+    };
 
     // Hack to put value at zero if the selected value clicked again
     const onClickEvent = (ev: React.MouseEvent<HTMLElement>): void => {
-        console.log("in Click fun", ratingRef.current);
-        if (ratingRef.current !== null) {
-            console.log("in Click fun in if", ratingRef.current);
-            const clickedRating = ratingRef.current.state.rating || undefined;
+        console.log("onClickEvent tempVal: ", tempVal);
+        // if (ratingRef.current !== null) {
+            // console.log("in Click fun in if", ratingRef.current);
+            const clickedRating = tempVal || undefined;
             console.log("Click: Previous value: " + rating + ", New value: " + clickedRating);
             // If clickedRating is the same as rating means that the selected item was click
             // otherwise set to new value
             const newRating = clickedRating === rating ? undefined : clickedRating;
             setRating(newRating);
-        }
+        // }
     };
 
     if (props.isMasked) {
         return <MaskedInput />
     } else {
         console.log("--> Component Rendering: rating = " + rating);
-        console.log("ratingRef.current.state.rating ", ratingRef?.current?.state?.rating);
-        console.log("ratingRef.current: ", ratingRef.current);
+        // console.log("ratingRef.current: ", ratingRef.current);
         return (
             <Rating
-                componentRef={ratingRef}
-                // ref={ratingRef}
                 icon={props.icon}
                 unselectedIcon={props.unselectdicon}
                 min={0}
@@ -101,7 +100,7 @@ const RatingControl = (props: IRatingControlProps): JSX.Element => {
                 size={RatingSize.Large}
                 rating={rating ?? 0}
                 allowZeroStars={true}
-                // onChange={onChangeEvent}
+                onChange={onChangeEvent}
                 onClick={onClickEvent}
                 theme={componentTheme}
                 readOnly={props.isReadonly}
