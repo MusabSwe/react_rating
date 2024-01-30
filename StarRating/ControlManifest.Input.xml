@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="ReactRating" constructor="StarRating" version="0.0.1"
+    display-name-key="StarRating" description-key="StarRating description" control-type="virtual" preview-image="img/rating.png">
+    <external-service-usage enabled="false">
+    </external-service-usage>
+    <!-- Propties which are inputs field user can enter -->
+    <property name="ratingvalue" display-name-key="Rating Value" description-key="Bound field for Rating" of-type="Whole.None" usage="bound" required="true" />
+    <property name="maxvalue" display-name-key="Max Value" description-key="Maximum value for Rating" of-type="Whole.None" usage="input" required="false" default-value="5"/>
+
+    <property name="icon" display-name-key="Icon" description-key="icon when selected (default : FavoriteStarFill), list here https://developer.microsoft.com/en-us/fluentui#/styles/web/icons" of-type="SingleLine.Text" usage="input" required="false" default-value="FavoriteStarFill"/>
+    <property name="unselectedicon" display-name-key="Unselected Icon" description-key="icon when unselected (default : FavoriteStar), list here https://developer.microsoft.com/en-us/fluentui#/styles/web/icons" of-type="SingleLine.Text" usage="input" required="false" default-value="FavoriteStar"/>
+    <property name="color" display-name-key="Color" description-key="Selected rating color (default : golden(#FFBF00))" of-type="SingleLine.Text" usage="input" required="false" default-value="#FFBF00"/>
+    
+    <resources>
+      <code path="index.ts" order="1" />
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="8.29.0" />
+    </resources>
+  </control>
+</manifest>
